@@ -1,4 +1,5 @@
 // Import database and model
+const {db,Track} = require('./setup')
 
 // Seed data
 const sampleTracks = [
@@ -99,5 +100,8 @@ const sampleTracks = [
     releaseYear: 1963
   }
 ];
+async function seedDatabase() { try {await Track.bulkCreate(sampleTracks)} catch(error){console.error('Unable to connect to the database:',error) }finally{await db.close()}}
+seedDatabase()
+  
 
 // Seed database with sample data
